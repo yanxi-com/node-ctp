@@ -9,7 +9,7 @@
 *.pch
 
 # Compiled Dynamic libraries
-*.so
+#*.so
 *.dylib
 *.dll
 
@@ -26,3 +26,18 @@
 *.exe
 *.out
 *.app
+
+# node
+node_modules
+
+# ide
+.idea
+
+# build result
+build
+
+# run
+*.con
+
+# private
+config.js
