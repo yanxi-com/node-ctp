@@ -8,6 +8,8 @@
 #include <map>
 #include <fstream>
 #include <node.h>
+#include <node_object_wrap.h>
+#include <nan.h>
 #include "ThostFtdcTraderApi.h"
 #include "ThostFtdcUserApiDataType.h"
 #include <uv.h>
@@ -25,44 +27,45 @@ public:
 	WrapTrader(void);
 	~WrapTrader(void);
 
-	///Á¬½ÓÇ°ÖÃ»ú
-	static Handle<Value> Connect(const Arguments& args);	
-	///×¢²áÊÂ¼ş
-	static Handle<Value> On(const Arguments& args);
-	///ÓÃ»§µÇÂ¼ÇëÇó
-	static Handle<Value> ReqUserLogin(const Arguments& args);
-	///µÇ³öÇëÇó 
-	static Handle<Value> ReqUserLogout(const Arguments& args);
-	///Í¶×ÊÕß½áËã½á¹ûÈ·ÈÏ
-	static Handle<Value> ReqSettlementInfoConfirm(const Arguments& args);
-	///ÇëÇó²éÑ¯ºÏÔ¼
-	static Handle<Value> ReqQryInstrument(const Arguments& args);
-	///ÇëÇó²éÑ¯×Ê½ğÕË»§
-	static Handle<Value> ReqQryTradingAccount(const Arguments& args);
-	///ÇëÇó²éÑ¯Í¶×ÊÕß³Ö²Ö
-	static Handle<Value> ReqQryInvestorPosition(const Arguments& args);
-	///³Ö²ÖÃ÷Ï¸
-	static Handle<Value> ReqQryInvestorPositionDetail(const Arguments& args);
-	///±¨µ¥Â¼ÈëÇëÇó
-	static Handle<Value> ReqOrderInsert(const Arguments& args);
-	///±¨µ¥²Ù×÷ÇëÇó
-	static Handle<Value> ReqOrderAction(const Arguments& args);
-	///ÇëÇó²éÑ¯ºÏÔ¼±£Ö¤½ğÂÊ 
-	static Handle<Value> ReqQryInstrumentMarginRate(const Arguments& args);
-	///ÇëÇó²éÑ¯ĞĞÇé 
-	static Handle<Value> ReqQryDepthMarketData(const Arguments& args);
-	///ÇëÇó²éÑ¯Í¶×ÊÕß½áËã½á¹û 
-	static Handle<Value> ReqQrySettlementInfo(const Arguments& args);
-	///É¾³ı½Ó¿Ú¶ÔÏó
-	static Handle<Value> Disposed(const Arguments& args);
-	//¶ÔÏó³õÊ¼»¯
+	///è¿æ¥å‰ç½®æœº
+	static NAN_METHOD(Connect);
+	///æ³¨å†Œäº‹ä»¶
+	static NAN_METHOD(On);
+	///ç”¨æˆ·ç™»å½•è¯·æ±‚
+	static NAN_METHOD(ReqUserLogin);
+	///ç™»å‡ºè¯·æ±‚
+	static NAN_METHOD(ReqUserLogout);
+	///æŠ•èµ„è€…ç»“ç®—ç»“æœç¡®è®¤
+	static NAN_METHOD(ReqSettlementInfoConfirm);
+	///è¯·æ±‚æŸ¥è¯¢åˆçº¦
+	static NAN_METHOD(ReqQryInstrument);
+	///è¯·æ±‚æŸ¥è¯¢èµ„é‡‘è´¦æˆ·
+	static NAN_METHOD(ReqQryTradingAccount);
+	///è¯·æ±‚æŸ¥è¯¢æŠ•èµ„è€…æŒä»“
+	static NAN_METHOD(ReqQryInvestorPosition);
+	///æŒä»“æ˜ç»†
+	static NAN_METHOD(ReqQryInvestorPositionDetail);
+	///æŠ¥å•å½•å…¥è¯·æ±‚
+	static NAN_METHOD(ReqOrderInsert);
+	///æŠ¥å•æ“ä½œè¯·æ±‚
+	static NAN_METHOD(ReqOrderAction);
+	///è¯·æ±‚æŸ¥è¯¢åˆçº¦ä¿è¯é‡‘ç‡
+	static NAN_METHOD(ReqQryInstrumentMarginRate);
+	///è¯·æ±‚æŸ¥è¯¢è¡Œæƒ…
+	static NAN_METHOD(ReqQryDepthMarketData);
+	///è¯·æ±‚æŸ¥è¯¢æŠ•èµ„è€…ç»“ç®—ç»“æœ
+	static NAN_METHOD(ReqQrySettlementInfo);
+	///åˆ é™¤æ¥å£å¯¹è±¡
+	static NAN_METHOD(Disposed);
+	//å¯¹è±¡åˆå§‹åŒ–
 	static void Init(int args);
-	static Handle<Value> NewInstance(const Arguments& args);
-    static Handle<Value> GetTradingDay(const Arguments& args);
+
+	static NAN_METHOD(NewInstance);
+	static NAN_METHOD(GetTradingDay);
 
 private:
-	static void initEventMap();	
-	static Handle<Value> New(const Arguments& args);
+	static void initEventMap();
+	static NAN_METHOD(New);
 	static void pkg_cb_userlogin(CbRtnField* data, Local<Value>*cbArray);
 	static void pkg_cb_userlogout(CbRtnField* data, Local<Value>*cbArray);
 	static void pkg_cb_confirm(CbRtnField* data, Local<Value>*cbArray);

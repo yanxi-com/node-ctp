@@ -4,7 +4,7 @@
 #include <node.h>
 
 #define MSG_MAX_COUNT 200
-///////////////////////////////内部使用
+///////////////////////////////鍐呴儴浣跨敤
 #define T_CONNECT_RE 1
 #define T_LOGIN_RE 2
 #define T_LOGOUT_RE 3
@@ -21,7 +21,7 @@
 #define T_SUBSCRIBE_MARKET_DATA_RE 14
 #define T_UNSUBSCRIBE_MARKET_DATA_RE 15
 #define T_DISCONNECT_RE	16
-///////////////////////////////外部使用
+///////////////////////////////澶栭儴浣跨敤
 #define T_ON_CONNECT 1
 #define T_ON_DISCONNECTED 2
 #define T_ON_RSPUSERLOGIN 3
@@ -61,13 +61,13 @@ struct LookupCtpApiBaton {
 	int fun;
 	int iRequestID;
 	int nResult;
-	int uuid;//回调标识
+	int uuid;//鍥炶皟鏍囪瘑
 	int nCount;
 };
 
 struct CbRtnField {
     uv_work_t work;
-	int eFlag;//事件标识
+	int eFlag;//浜嬩欢鏍囪瘑
 	int nRequestID;
 	int nReason;
 	void* rtnField;

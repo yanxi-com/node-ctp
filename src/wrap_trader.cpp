@@ -100,8 +100,8 @@ void WrapTrader::initEventMap() {
 	event_map["rspError"] = T_ON_RSPERROR;
 }
 
-Handle<Value> WrapTrader::New(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::New) {
+    NanScope();
 
 	if (event_map.size() == 0)
 		initEventMap();
@@ -110,8 +110,8 @@ Handle<Value> WrapTrader::New(const Arguments& args) {
 	return args.This();
 }
 
-Handle<Value> WrapTrader::NewInstance(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::NewInstance) {
+    NanScope();
 
 	const unsigned argc = 1;
 	Handle<Value> argv[argc] = { args[0] };
@@ -119,8 +119,8 @@ Handle<Value> WrapTrader::NewInstance(const Arguments& args) {
 	return scope.Close(instance);
 }
 
-Handle<Value> WrapTrader::On(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::On) {
+    NanScope();
 	if (args[0]->IsUndefined() || args[1]->IsUndefined()) {
 		logger_cout("Wrong arguments->event name or function");
 		ThrowException(Exception::TypeError(String::New("Wrong arguments->event name or function")));
@@ -153,8 +153,8 @@ Handle<Value> WrapTrader::On(const Arguments& args) {
 	return scope.Close(Int32::New(0));
 }
 
-Handle<Value> WrapTrader::Connect(const Arguments& args) {
-	HandleScope scope;	
+NAN_METHOD(WrapTrader::Connect) {
+    NanScope();
 	std::string log = "wrap_trader Connect------>";
 	if (args[0]->IsUndefined()) {
 		logger_cout("Wrong arguments->front addr");
@@ -193,8 +193,8 @@ Handle<Value> WrapTrader::Connect(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqUserLogin(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqUserLogin) {
+    NanScope();
 	std::string log = "wrap_trader ReqUserLogin------>";
 	if (args[0]->IsUndefined() || args[1]->IsUndefined() || args[2]->IsUndefined()) {
 		std::string _head = std::string(log);
@@ -229,8 +229,8 @@ Handle<Value> WrapTrader::ReqUserLogin(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqUserLogout(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqUserLogout) {
+    NanScope();
 	std::string log = "wrap_trader ReqUserLogout------>";
 
 	if (args[0]->IsUndefined() || args[1]->IsUndefined()) {
@@ -262,8 +262,8 @@ Handle<Value> WrapTrader::ReqUserLogout(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqSettlementInfoConfirm(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqSettlementInfoConfirm) {
+    NanScope();
 	std::string log = "wrap_trader ReqSettlementInfoConfirm------>";
 
 	if (args[0]->IsUndefined() || args[1]->IsUndefined()) {
@@ -295,8 +295,8 @@ Handle<Value> WrapTrader::ReqSettlementInfoConfirm(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqQryInstrument(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqQryInstrument) {
+    NanScope();
 	std::string log = "wrap_trader ReqQryInstrument------>";
 
 	if (args[0]->IsUndefined()) {
@@ -325,8 +325,8 @@ Handle<Value> WrapTrader::ReqQryInstrument(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqQryTradingAccount(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqQryTradingAccount) {
+    NanScope();
 	std::string log = "wrap_trader ReqQryTradingAccount------>";
 
 	if (args[0]->IsUndefined() || args[1]->IsUndefined()) {
@@ -357,8 +357,8 @@ Handle<Value> WrapTrader::ReqQryTradingAccount(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqQryInvestorPosition(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqQryInvestorPosition) {
+    NanScope();
 	std::string log = "wrap_trader ReqQryInvestorPosition------>";
 
 	if (args[0]->IsUndefined() || args[1]->IsUndefined() || args[2]->IsUndefined()) {
@@ -393,8 +393,8 @@ Handle<Value> WrapTrader::ReqQryInvestorPosition(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqQryInvestorPositionDetail(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqQryInvestorPositionDetail) {
+    NanScope();
 	std::string log = "wrap_trader ReqQryInvestorPositionDetail------>";
 
 	if (args[0]->IsUndefined() || args[1]->IsUndefined() || args[2]->IsUndefined()) {
@@ -429,8 +429,8 @@ Handle<Value> WrapTrader::ReqQryInvestorPositionDetail(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqOrderInsert(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqOrderInsert) {
+    NanScope();
 	std::string log = "wrap_trader ReqOrderInsert------>";
 
 	if (args[0]->IsUndefined() || !args[0]->IsObject()) {
@@ -598,8 +598,8 @@ Handle<Value> WrapTrader::ReqOrderInsert(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqOrderAction(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqOrderAction) {
+    NanScope();
 	std::string log = "wrap_trader ReqOrderAction------>";
 
 	if (args[0]->IsUndefined() || !args[0]->IsObject()) {
@@ -693,8 +693,8 @@ Handle<Value> WrapTrader::ReqOrderAction(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqQryInstrumentMarginRate(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqQryInstrumentMarginRate) {
+    NanScope();
 	std::string log = "wrap_trader ReqQryInstrumentMarginRate------>";
 
 	if (args[0]->IsUndefined() || args[1]->IsUndefined() || args[2]->IsUndefined() || args[3]->IsUndefined()) {
@@ -737,8 +737,8 @@ Handle<Value> WrapTrader::ReqQryInstrumentMarginRate(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqQryDepthMarketData(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqQryDepthMarketData) {
+    NanScope();
 	std::string log = "wrap_trader ReqQryDepthMarketData------>";
 
 	if (args[0]->IsUndefined()) {
@@ -768,8 +768,8 @@ Handle<Value> WrapTrader::ReqQryDepthMarketData(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::ReqQrySettlementInfo(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::ReqQrySettlementInfo) {
+    NanScope();
 	std::string log = "wrap_trader ReqQrySettlementInfo------>";
 
 	if (args[0]->IsUndefined() || args[1]->IsUndefined() || args[2]->IsUndefined()) {
@@ -808,8 +808,8 @@ Handle<Value> WrapTrader::ReqQrySettlementInfo(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::Disposed(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(WrapTrader::Disposed) {
+    NanScope();
 	WrapTrader* obj = ObjectWrap::Unwrap<WrapTrader>(args.This());
 	obj->uvTrader->Disconnect();	
 	std::map<int, Persistent<Function> >::iterator callback_it = callback_map.begin();
@@ -826,8 +826,8 @@ Handle<Value> WrapTrader::Disposed(const Arguments& args) {
 	return scope.Close(Undefined());
 }
 
-Handle<Value> WrapTrader::GetTradingDay(const Arguments& args){
-    HandleScope scope;
+NAN_METHOD(WrapTrader::GetTradingDay) {
+    NanScope();
 	WrapTrader* obj = ObjectWrap::Unwrap<WrapTrader>(args.This());
 	const char* tradingDay = obj->uvTrader->GetTradingDay();
 	return scope.Close(String::New(tradingDay));

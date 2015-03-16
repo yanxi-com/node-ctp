@@ -7,39 +7,39 @@ using namespace v8;
 
 bool islog;//log?
 
-Handle<Value> CreateTrader(const Arguments& args) {
-  HandleScope scope;
-  return scope.Close(WrapTrader::NewInstance(args));
+NAN_METHOD(CreateTrader) {
+	NanScope();
+	NanReturnValue(NanNew<FunctionTemplate>(WrapTrader::NewInstance)->GetFunction());
 }
 
-Handle<Value> CreateMdUser(const Arguments& args) {
-	HandleScope scope;
-	return scope.Close(WrapMdUser::NewInstance(args));
+NAN_METHOD(CreateMdUser) {
+	NanScope();
+	NanReturnValue(NanNew<FunctionTemplate>(WrapMdUser::NewInstance)->GetFunction());
 }
 
-Handle<Value> Settings(const Arguments& args) {
-	HandleScope scope;
+NAN_METHOD(Settings) {
+	NanScope();
 
 	if (!args[0]->IsUndefined() && args[0]->IsObject()) {
 		Local<Object> setting = args[0]->ToObject();
-		Local<Value> log = setting->Get(v8::String::New("log"));
+		Local<Value> log = setting->Get(NanNew<String>("log"));
 		if (!log->IsUndefined()) {
 			islog = log->BooleanValue();
-		}		
+		}
 	}
 
-	return scope.Close(Undefined());
+	NanReturnValue(NanUndefined());
 }
 
 void Init(Handle<Object> exports) {
 	WrapTrader::Init(0);
 	WrapMdUser::Init(0);
-	exports->Set(String::NewSymbol("createTrader"),
-		FunctionTemplate::New(CreateTrader)->GetFunction());
-	exports->Set(String::NewSymbol("createMdUser"),
-		FunctionTemplate::New(CreateMdUser)->GetFunction());
-	exports->Set(String::NewSymbol("settings"),
-		FunctionTemplate::New(Settings)->GetFunction());
+	exports->Set(NanNew<String>("createTrader"),
+		NanNew<FunctionTemplate>(CreateTrader)->GetFunction());
+	exports->Set(NanNew<String>("createMdUser"),
+		NanNew<FunctionTemplate>(CreateMdUser)->GetFunction());
+	exports->Set(NanNew<String>("settings"),
+		NanNew<FunctionTemplate>(Settings)->GetFunction());
 }
 
 NODE_MODULE(shifctp, Init)

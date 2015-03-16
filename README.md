@@ -33,10 +33,10 @@ Shif发布的CTP接口是基于C++语言开发的，我们使用CTP开发交易�
 
 ## 编译
 
-1. `npm install -g node-gyp`
+1. `npm install -g node-gyp`, for iojs, use `npm install -g pangyp`
 1. `npm install`
-1. 打开binding.gyp文件，把libraries节点的路径修改成自己开发环境的真实路径；
-1. `node-gyp rebuild`
+1. `vim binding.gyp`, 把libraries节点的路径修改成自己开发环境的真实路径
+1. `node-gyp rebuild`, for iojs, use `pangyp rebuild`
 
 注意：windows环境下，node-gyp默认生成vs2010版本的工程，如果没有安装此版本的vs，需要设置环境变量
 如：GYP_MSVS_VERSION=2013
@@ -52,3 +52,11 @@ Shif发布的CTP接口是基于C++语言开发的，我们使用CTP开发交易�
 ## 介绍
 
 待续
+
+## Nan 参考
+https://github.com/rvagg/nan
+https://github.com/melor/node-posix/commit/d5c0e61dba9c53cfe2e3441252052214cf89d7b2
+https://github.com/node-ffi/node-ffi/pull/167/files?diff=split
+[NanSetPrototypeTemplate](https://github.com/santigimeno/node-pcsclite/blob/master/src/cardreader.cpp)
+https://github.com/santigimeno/node-pcsclite/commit/26faed6dece863bdd09270f14ee4e6331608d082#diff-daf0766c8c9bb2f343d7b634ac3ee534
+https://github.com/rvagg/node-libssh/pull/38/files?diff=split

@@ -8,6 +8,8 @@
 #include <map>
 #include <fstream>
 #include <node.h>
+#include <node_object_wrap.h>
+#include <nan.h>
 #include "ThostFtdcTraderApi.h"
 #include "ThostFtdcUserApiDataType.h"
 #include <uv.h>
@@ -24,19 +26,22 @@ public:
 	WrapMdUser(void);
 	~WrapMdUser(void);
 
-	static Handle<Value> Connect(const Arguments& args);
-	static Handle<Value> On(const Arguments& args);
-	static Handle<Value> ReqUserLogin(const Arguments& args);
-	static Handle<Value> ReqUserLogout(const Arguments& args);
-	static Handle<Value>  SubscribeMarketData(const Arguments& args);
-	static Handle<Value>  UnSubscribeMarketData(const Arguments& args);
-	static Handle<Value> Disposed(const Arguments& args);
+	static NAN_METHOD(Connect);
+	static NAN_METHOD(On);
+	static NAN_METHOD(ReqUserLogin);
+	static NAN_METHOD(ReqUserLogout);
+	static NAN_METHOD(SubscribeMarketData);
+	static NAN_METHOD(UnSubscribeMarketData);
+	static NAN_METHOD(Disposed);
+	static NAN_METHOD(NewInstance);
+
 	static void Init(int args);
-	static Handle<Value> NewInstance(const Arguments& args);
 
 private:
 	static void initEventMap();
-	static Handle<Value> New(const Arguments& args);
+
+	static NAN_METHOD(New);
+
 	static void pkg_cb_userlogin(CbRtnField* data, Local<Value>*cbArray);
 	static void pkg_cb_userlogout(CbRtnField* data, Local<Value>*cbArray);
 	static void pkg_cb_rspsubmarketdata(CbRtnField* data, Local<Value>*cbArray);
