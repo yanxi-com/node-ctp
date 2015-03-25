@@ -12,8 +12,8 @@
         "src/wrap_trader.cpp"
       ],
       "libraries": [
-        "/root/git/node-ctp/6.3.0_20140811_traderapi_linux64/thostmduserapi.so",
-        "/root/git/node-ctp/6.3.0_20140811_traderapi_linux64/thosttraderapi.so"
+        "/env/node-ctp/6.3.0_20140811_traderapi_linux64/thostmduserapi.so",
+        "/env/node-ctp/6.3.0_20140811_traderapi_linux64/thosttraderapi.so"
       ],
       "include_dirs": ["6.3.0_20140811_traderapi_linux64"]
     }
